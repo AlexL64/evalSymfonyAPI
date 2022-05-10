@@ -23,7 +23,7 @@ class Club
     #[ORM\Column(type: 'string', length: 320)]
     private $email;
 
-    #[ORM\OneToMany(mappedBy: 'club_id', targetEntity: Gens::class)]
+    #[ORM\OneToMany(mappedBy: 'club', targetEntity: Gens::class)]
     private $gens;
 
     public function __construct()

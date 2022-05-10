@@ -20,7 +20,7 @@ class Dettes
 
     #[ORM\ManyToOne(targetEntity: gens::class, inversedBy: 'dettes')]
     #[ORM\JoinColumn(nullable: false)]
-    private $gens_id;
+    private $gens;
 
     public function getId(): ?int
     {
@@ -41,12 +41,12 @@ class Dettes
 
     public function getGensId(): ?gens
     {
-        return $this->gens_id;
+        return $this->gens;
     }
 
-    public function setGensId(?gens $gens_id): self
+    public function setGensId(?gens $gens): self
     {
-        $this->gens_id = $gens_id;
+        $this->gens = $gens;
 
         return $this;
     }

@@ -24,9 +24,9 @@ class Gens
     private $prenom;
 
     #[ORM\ManyToOne(targetEntity: club::class, inversedBy: 'gens')]
-    private $club_id;
+    private $club;
 
-    #[ORM\OneToMany(mappedBy: 'gens_id', targetEntity: Dettes::class)]
+    #[ORM\OneToMany(mappedBy: 'gens', targetEntity: Dettes::class)]
     private $dettes;
 
     public function __construct()
@@ -65,12 +65,12 @@ class Gens
 
     public function getClubId(): ?club
     {
-        return $this->club_id;
+        return $this->club;
     }
 
-    public function setClubId(?club $club_id): self
+    public function setClubId(?club $club): self
     {
-        $this->club_id = $club_id;
+        $this->club = $club;
 
         return $this;
     }
