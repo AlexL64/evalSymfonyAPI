@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DettesRepository::class)]
 #[ApiResource]
+
 class Dettes
 {
     #[ORM\Id]

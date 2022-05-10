@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\ClubBySlug;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ClubRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +10,21 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClubRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    itemOperations: array(
+        "get",
+        "patch",
+        "delete",
+        "put",
+        "get_by_slug" => array(
+            "method" => "GET",
+            "path" => "/club/{slug}",
+            "controller" => ClubBySlug::class,
+            "read" => false
+        )
+    )
+)]
+
 class Club
 {
     #[ORM\Id]
@@ -23,7 +38,7 @@ class Club
     #[ORM\Column(type: 'string', length: 320)]
     private $email;
 
-    #[ORM\OneToMany(mappedBy: 'club', targetEntity: Gens::class)]
+    #[ORM\OneToMany(mappedBy: 'club_id', targetEntity: Gens::class)]
     private $gens;
 
     public function __construct()
