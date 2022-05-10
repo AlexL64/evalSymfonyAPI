@@ -18,7 +18,7 @@ class Dettes
     #[ORM\Column(type: 'float')]
     private $montant;
 
-    #[ORM\ManyToOne(targetEntity: gens::class, inversedBy: 'dettes')]
+    #[ORM\ManyToOne(targetEntity: Gens::class, inversedBy: 'dettes')]
     #[ORM\JoinColumn(nullable: false)]
     private $gens;
 

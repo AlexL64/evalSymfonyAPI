@@ -23,7 +23,7 @@ class Gens
     #[ORM\Column(type: 'string', length: 50)]
     private $prenom;
 
-    #[ORM\ManyToOne(targetEntity: club::class, inversedBy: 'gens')]
+    #[ORM\ManyToOne(targetEntity: Club::class, inversedBy: 'gens')]
     private $club;
 
     #[ORM\OneToMany(mappedBy: 'gens', targetEntity: Dettes::class)]
