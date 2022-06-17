@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Doctrine\Persistence\ManagerRegistry;
  
 #[AsController]
-class SuperheroBySlug extends AbstractController
+class ClubBySlug extends AbstractController
 {
 
     public function __construct(private ManagerRegistry $doctrine) {}

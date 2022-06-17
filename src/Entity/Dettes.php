@@ -7,7 +7,13 @@ use App\Repository\DettesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DettesRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    itemOperations: array(
+        "get",
+        "delete",
+        "put"
+    )
+)]
 
 class Dettes
 {
@@ -40,12 +46,12 @@ class Dettes
         return $this;
     }
 
-    public function getGensId(): ?gens
+    public function getGensId(): ?Gens
     {
         return $this->gens;
     }
 
-    public function setGensId(?gens $gens): self
+    public function setGensId(?Gens $gens): self
     {
         $this->gens = $gens;
 

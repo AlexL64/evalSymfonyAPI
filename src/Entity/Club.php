@@ -13,20 +13,19 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource(
     itemOperations: array(
         "get",
-        "patch",
         "delete",
-        "put",
-        "get_by_slug" => array(
-            "method" => "GET",
-            "path" => "/club/{slug}",
-            "controller" => ClubBySlug::class,
-            "read" => false
-        )
+        "put"
+    ),
+    collectionOperations: array(
+        "get_only_status_true" => ["method" => "get"]
     )
+    
+    
 )]
 
 class Club
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -38,7 +37,7 @@ class Club
     #[ORM\Column(type: 'string', length: 320)]
     private $email;
 
-    #[ORM\OneToMany(mappedBy: 'club_id', targetEntity: Gens::class)]
+    #[ORM\OneToMany(mappedBy: 'club', targetEntity: Gens::class)]
     private $gens;
 
     public function __construct()
