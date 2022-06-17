@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Controller\ClubBySlug;
+//use App\Controller\ClubBySlug;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ClubRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiRessource;
+use ApiPlatform\Core\Bridge\Doctrine\MongoDbOdm\Filter\OrderFilter;
 
 #[ORM\Entity(repositoryClass: ClubRepository::class)]
 #[ApiResource(
@@ -15,11 +18,12 @@ use Doctrine\ORM\Mapping as ORM;
         "get",
         "delete",
         "put"
-    ),
-    collectionOperations: array(
-        "get_only_status_true" => ["method" => "get"]
     )
-    
+)]
+
+#[ApiFilter(
+    OrderFilter::class,
+    properties: ['name'],
     
 )]
 
