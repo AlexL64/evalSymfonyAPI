@@ -9,7 +9,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GensRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    itemOperations: array(
+        "get",
+        "delete",
+        "put"
+    )
+)]
+
 class Gens
 {
     #[ORM\Id]
@@ -23,7 +30,7 @@ class Gens
     #[ORM\Column(type: 'string', length: 50)]
     private $prenom;
 
-    #[ORM\ManyToOne(targetEntity: club::class, inversedBy: 'gens')]
+    #[ORM\ManyToOne(targetEntity: Club::class, inversedBy: 'gens')]
     private $club;
 
     #[ORM\OneToMany(mappedBy: 'gens', targetEntity: Dettes::class)]
@@ -63,12 +70,12 @@ class Gens
         return $this;
     }
 
-    public function getClubId(): ?club
+    public function getClubId(): ?Club
     {
         return $this->club;
     }
 
-    public function setClubId(?club $club): self
+    public function setClubId(?Club $club): self
     {
         $this->club = $club;
 

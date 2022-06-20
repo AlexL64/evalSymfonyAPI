@@ -2,16 +2,34 @@
 
 namespace App\Entity;
 
+//use App\Controller\ClubBySlug;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ClubRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiRessource;
+use ApiPlatform\Core\Bridge\Doctrine\MongoDbOdm\Filter\OrderFilter;
 
 #[ORM\Entity(repositoryClass: ClubRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    itemOperations: array(
+        "get",
+        "delete",
+        "put"
+    )
+)]
+
+#[ApiFilter(
+    OrderFilter::class,
+    properties: ['name'],
+    
+)]
+
 class Club
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
