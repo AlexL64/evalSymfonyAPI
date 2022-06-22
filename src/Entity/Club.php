@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
     itemOperations: array(
         "get",
         "delete",
-        "put"
+        "patch"
     )
 )]
 
